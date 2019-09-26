@@ -452,10 +452,11 @@
               </div>
 
               <div class="col-md-4">
-                <form>
+                <form method="POST">
                   <h1>Contact Me</h1>
-                  <input type="text" name="Name" placeholder="Full Name">                
-                  <textarea cols="80" rows="5" placeholder="Please write a message"></textarea>
+                  <input type="text" name="Name" id="name" placeholder="Full Name">                
+                  <input type="text" name="Email" id="email" placeholder="Email">                
+                  <textarea cols="80" rows="5" id="message" placeholder="Please write a message"></textarea>
                   <div class="col-md-12" style="padding:0; ">
                     <a href="" type="button" class="send-btn">Send</a>
                   </div>
@@ -532,6 +533,32 @@
     AOS.init({
   duration: 900,
 })
+  </script>
+
+  <script type="text/javascript">
+    $(function() {
+    $("#contact .send-btn").click(function() {
+       var data = {
+          name: $("#form_name").val(),
+          email: $("#form_email").val(),
+          message: $("#msg_text").val()
+      };
+      $.ajax({
+          type: "POST",
+          url: "email.php",
+          data: data,
+          success: function(){
+              $('.success').fadeIn(1000);
+          }
+      });
+
+        return false;
+    });
+});
+
+
+
+
   </script>
    </body>
 </html>
