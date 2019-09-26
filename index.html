@@ -452,15 +452,32 @@
               </div>
 
               <div class="col-md-4">
-                <form method="POST">
-                  <h1>Contact Me</h1>
-                  <input type="text" name="Name" id="name" placeholder="Full Name">                
-                  <input type="text" name="Email" id="email" placeholder="Email">                
-                  <textarea cols="80" rows="5" id="message" placeholder="Please write a message"></textarea>
-                  <div class="col-md-12" style="padding:0; ">
-                    <a href="" type="button" class="send-btn">Send</a>
+                <div id="frmContact">
+                  <div id="mail-status"></div>
+                  <div>
+                  <label style="padding-top:20px;">Name</label>
+                  <span id="userName-info" class="info"></span><br/>
+                  <input type="text" name="userName" id="userName" class="demoInputBox">
                   </div>
-                </form>
+                  <div>
+                  <label>Email</label>
+                  <span id="userEmail-info" class="info"></span><br/>
+                  <input type="text" name="userEmail" id="userEmail" class="demoInputBox">
+                  </div>
+                  <div>
+                  <label>Subject</label> 
+                  <span id="subject-info" class="info"></span><br/>
+                  <input type="text" name="subject" id="subject" class="demoInputBox">
+                  </div>
+                  <div>
+                  <label>Content</label> 
+                  <span id="content-info" class="info"></span><br/>
+                  <textarea name="content" id="content" class="demoInputBox" cols="60" rows="6"></textarea>
+                  </div>
+                  <div>
+                  <button name="submit" class="btnAction" onClick="sendContact();">Send</button>
+                  </div>
+                  </div>
               </div>
             </div>
          </div>
@@ -535,30 +552,56 @@
 })
   </script>
 
-  <script type="text/javascript">
-    $(function() {
-    $("#contact .send-btn").click(function() {
-       var data = {
-          name: $("#form_name").val(),
-          email: $("#form_email").val(),
-          message: $("#msg_text").val()
-      };
-      $.ajax({
-          type: "POST",
-          url: "email.php",
-          data: data,
-          success: function(){
-              $('.success').fadeIn(1000);
-          }
-      });
-
-        return false;
+<script>
+function sendContact() {
+  var valid;  
+  valid = validateContact();
+  if(valid) {
+    jQuery.ajax({
+    url: "email.php",
+    data:'userName='+$("#userName").val()+'&userEmail='+$("#userEmail").val()+'&subject='+$("#subject").val()+'&content='+$(content).val(),
+    type: "POST",
+    success:function(data){
+    $("#mail-status").html(data);
+    },
+    error:function (){}
     });
-});
+  }
+}
 
-
-
-
-  </script>
+function validateContact() {
+  var valid = true; 
+  $(".demoInputBox").css('background-color','');
+  $(".info").html('');
+  
+  if(!$("#userName").val()) {
+    $("#userName-info").html("(required)");
+    $("#userName").css('background-color','#FFFFDF');
+    valid = false;
+  }
+  if(!$("#userEmail").val()) {
+    $("#userEmail-info").html("(required)");
+    $("#userEmail").css('background-color','#FFFFDF');
+    valid = false;
+  }
+  if(!$("#userEmail").val().match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)) {
+    $("#userEmail-info").html("(invalid)");
+    $("#userEmail").css('background-color','#FFFFDF');
+    valid = false;
+  }
+  if(!$("#subject").val()) {
+    $("#subject-info").html("(required)");
+    $("#subject").css('background-color','#FFFFDF');
+    valid = false;
+  }
+  if(!$("#content").val()) {
+    $("#content-info").html("(required)");
+    $("#content").css('background-color','#FFFFDF');
+    valid = false;
+  }
+  
+  return valid;
+}
+</script>
    </body>
 </html>
