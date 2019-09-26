@@ -1041,11 +1041,14 @@ footer
 .project-info-button {
     padding: .3em .5em;
     color: aliceblue!important;
-    text-decoration: none;
+    text-decoration: unset;
     border: 1px solid #ff9b00;
     border-radius: 3px;
     transition: all 350ms;
     font-size: 14px;
+}
+a{
+  text-decoration: unset !important;
 }
 .project-info-button:hover {
   color: #595959 !important;
