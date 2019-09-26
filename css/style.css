@@ -22,6 +22,12 @@ body
 #projects {
   margin-top: 60px;
 }
+#projects{
+  padding: 0;
+}
+#education-experience {
+  padding: 0;
+}
 h3#timeline {
     font-size: 30px;
     color: #4a4646;
@@ -958,6 +964,42 @@ footer
   background-color: black; 
 }
 
+footer input {
+  border: unset;
+  width: 400px;
+  margin-bottom: 21px;
+  margin-top: 30px;
+  padding: 10px;
+  background-color: #f3f3f3;
+}
+
+footer textarea {
+    width: 400px!important;
+    resize: none;
+    margin-bottom: 18px;
+    padding: 10px;
+}
+footer #contact {
+  padding: 50px 0;
+}
+footer .send-btn {
+    background: #5D89FF;
+    padding: 8px 30px;
+    font-size: 18px;
+    color: #f1f1f1;
+    border-radius: 0;
+    transition: .2s;
+    border-color: transparent;
+}
+
+footer .row {
+  display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
 /* PROJECTS */
 #main {
   display: flex;
