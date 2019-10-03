@@ -996,8 +996,11 @@ footer .row {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: top;
     align-content: center;
+}
+footer .bottom-footer {
+  margin-top: 36%;
 }
 /* PROJECTS */
 #main {
